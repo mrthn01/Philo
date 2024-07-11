@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 12:45:45 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/10 23:58:18 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/11 14:14:58 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_fork
 typedef struct s_philo
 {
 	long	id;
-	long	philo_num;
 	long	time_to_die;
 	long	time_to_eat;
 	long	time_to_sleep;
@@ -51,10 +50,15 @@ typedef struct s_philo
 typedef struct s_table
 {
 	long	dead_flag;
+	long	philo_num;
+	long	time_to_die;
+	long	time_to_eat;
+	long	time_to_sleep;
+	long	number_of_meals;
 	t_mutex	dead_mutex; // for dead philos
 	t_mutex	write_mutex; // for printing
 	t_mutex	meal_mutex;
-	t_fork	*fork;	// for eating
+	t_fork	*forks;	// for eating
 	t_philo	*philos;
 }			t_table;
 
