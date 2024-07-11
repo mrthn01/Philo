@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 23:33:38 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/11 14:25:51 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/11 14:30:09 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	assign_forks(t_philo *philo, t_fork *forks, int pos, long philo_nbr)
 	}
 }
 
-void	arg_init(t_table *table, char **argv)
+void	inputs(t_table *table, char **argv)
 {
 	table->philo_num = ft_atol(argv[1]);
 	table->time_to_die = ft_atol(argv[2]);
@@ -76,7 +76,7 @@ void	philo_init(t_table *table)
 	}
 }
 
-void	data_init(t_table *table, t_philo *philo, char **argv)
+void	data_init(t_table *table, char **argv)
 {
 	arg_init(table, argv);
 	table_init(table);

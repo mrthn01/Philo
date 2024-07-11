@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 22:39:47 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/10 22:49:48 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/11 20:04:14 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,25 @@ size_t	get_current_time(void)
 	if (gettimeofday(&time, NULL) == -1)
 		write(2, "gettimeofday() error\n", 22);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
+void	write_status(t_philo *philo, t_status status)
+{
+	long	elapsed;
+
+	elapsed = get_current_time();
+	pthread_mutex_lock(&philo->write_mutex);
+	if (status == TAKE_RIGHT_FORK)
+		printf("%-6ld %d has taken right fork\n", elapsed, philo->id);
+	else if (status == TAKE_LEFT_FORK)
+		printf("%-6ld %d has taken left fork\n", elapsed, philo->id);
+	else if (status == SLEEPING)
+		printf("%-6ld %d is sleeing\n", elapsed, philo->id);
+	else if (status == EATING)
+		printf("%-6ld %d is eating\n", elapsed, philo->id);
+	else if (status == THINKING)
+		printf("%-6ld %d is thinking\n", elapsed, philo->id);
+	else if (status == DIED)
+		printf("%-6ld %d is dead\n", elapsed, philo->id);
+	pthread_mutex_unlock(&philo->write_mutex);
 }

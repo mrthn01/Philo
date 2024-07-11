@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 12:45:45 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/11 14:14:58 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/11 19:56:14 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,22 @@ typedef struct s_fork
 
 typedef struct s_philo
 {
-	long	id;
-	long	time_to_die;
-	long	time_to_eat;
-	long	time_to_sleep;
-	long	meal_counter;
-	long	number_of_meals;
-	long	start_time;
-	long	last_meal_time;
-	t_table	*table;
-	t_mutex	*first_fork;
-	t_mutex	*second_fork;
-	t_mutex	*write_mutex;
-	t_mutex	*meal_mutex;
-	t_mutex	*dead_mutex;
+	pthread_t	th;
+	long		id;
+	long		time_to_die;
+	long		time_to_eat;
+	long		time_to_sleep;
+	long		meal_counter;
+	long		number_of_meals;
+	long		start_time;
+	long		last_meal_time;
+	long		*dead;
+	t_table		*table;
+	t_mutex		*first_fork;
+	t_mutex		*second_fork;
+	t_mutex		*write_mutex;
+	t_mutex		*meal_mutex;
+	t_mutex		*dead_mutex;
 }				t_philo;
 
 typedef struct s_table
@@ -62,6 +64,16 @@ typedef struct s_table
 	t_philo	*philos;
 }			t_table;
 
+typedef enum	s_status
+{
+	TAKE_RIGHT_FORK,
+	TAKE_LEFT_FORK,
+	EATING,
+	SLEEPING,
+	THINKING,
+	DIED,
+}			t_status;
+
 // Utils
 size_t	ft_strlen(const char *str);
 int		ft_error(char *str);
@@ -73,18 +85,18 @@ long	get_current_time(void);
 long	ft_usleep(size_t milliseconds);
 
 // Controls
-int	check_args_digit(char *argv);
+int	check_arg_digits(char *argv);
 int	check_args(char **argv);
 
 // Initialize the data
 void	inputs(t_table *table, char **argv);
 void	table_init(t_table *table);
-void	assign_forks(t_philo *philo, t_mutex *fork, int pos);
+void	assign_forks(t_philo *philo, t_fork *forks, int pos, long philo_nbr);
 void	philo_init(t_table *table);
-void	ft_args_init(t_table *table, char **argv);
+void	data_init(t_table *table, char **argv);
 
 // Dinner Simulation
-void	ft_simulation(t_table *table);
+void	simulation(t_table *table);
 void	*dinner(void *data);
 
 // Monitor
