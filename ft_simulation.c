@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 14:31:02 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/11 19:56:05 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/12 14:25:34 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	simulation(t_table *table)
 	int			i;
 
 	i = 0;
-	pthread_create(waiter, NULL, &monitor, NULL);
+	if (pthread_create(waiter, NULL, &monitor, NULL) != 0)
+		return (close_all("Failed at creating thread", table), ;);
 	while (i < table->philo_num)
 	{
 		pthread_create(&table->philos[i].th, NULL, &dinner, &table->philos[i]);

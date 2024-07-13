@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 12:45:45 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/11 19:56:14 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/13 13:53:41 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ long	ft_atol(const char *str);
 void	*ft_malloc(size_t size);
 long	get_current_time(void);
 long	ft_usleep(size_t milliseconds);
+void	close_all(char *str, t_table *table);
 
 // Controls
 int	check_arg_digits(char *argv);
@@ -101,5 +102,9 @@ void	*dinner(void *data);
 
 // Monitor
 void	*monitor(void *data);
+
+// Threads
+int	create(pthread_t th, void *(*foo)(void *), void *data);
+int	join(pthread_t th);
 
 #endif

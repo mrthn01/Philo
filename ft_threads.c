@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_threads.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 22:33:15 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/13 13:54:10 by murathanelc      ###   ########.fr       */
+/*   Created: 2024/07/12 14:47:15 by murathanelc       #+#    #+#             */
+/*   Updated: 2024/07/13 13:49:20 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+int	create(pthread_t th, void *(*foo)(void *), void *data)
 {
-	t_table	table;
-	
-	if (argc != 5 || argc != 6)
-		return (ft_error("Not enough argumnets"));
-	if (check_args(argv) == 1)
-		return (1);
-	data_init(&table, argv);
-	simulation(&table);
-	close_all(NULL, &table);
+	if (pthread_create(&th, NULL, foo, data) != 0)
+		return (ft_error("Failed at creating thread"));
+	return (0);
+}
+
+int	join(pthread_t th)
+{
+	if (pthread_join(th, NULL) != 0)
+		return (ft_error("Failed at joining thread"));
 	return (0);
 }

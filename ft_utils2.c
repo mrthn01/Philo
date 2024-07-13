@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 22:39:47 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/11 20:04:14 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/13 13:51:10 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,27 @@ void	write_status(t_philo *philo, t_status status)
 	else if (status == DIED)
 		printf("%-6ld %d is dead\n", elapsed, philo->id);
 	pthread_mutex_unlock(&philo->write_mutex);
+}
+
+void	close_all(char *str, t_table *table)
+{
+	int	i;
+
+	i = 0;
+	if (str)
+	{
+		write(2, str, ft_strlen(str));
+		write(2, "\n", 1);
+	}
+	pthread_mutex_destroy(&table->write_mutex);
+	pthread_mutex_destroy(&table->dead_mutex);
+	pthread_mutex_destroy(&table->meal_mutex);
+	while (i < table->philo_num)
+	{
+		pthread_mutex_destroy(&table->forks[i].fork);
+		i++;
+	}
+	i = 0;
+	free(table->philos);
+	free(table->forks);
 }
