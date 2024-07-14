@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 22:39:47 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/13 13:51:10 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/13 16:11:08 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,31 @@ size_t	get_current_time(void)
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-void	write_status(t_philo *philo, t_status status)
+void	write_status(t_philo *philo, t_status status, long id)
 {
-	long	elapsed;
+	long	time;
 
-	elapsed = get_current_time();
-	pthread_mutex_lock(&philo->write_mutex);
-	if (status == TAKE_RIGHT_FORK)
-		printf("%-6ld %d has taken right fork\n", elapsed, philo->id);
-	else if (status == TAKE_LEFT_FORK)
-		printf("%-6ld %d has taken left fork\n", elapsed, philo->id);
-	else if (status == SLEEPING)
-		printf("%-6ld %d is sleeing\n", elapsed, philo->id);
-	else if (status == EATING)
-		printf("%-6ld %d is eating\n", elapsed, philo->id);
-	else if (status == THINKING)
-		printf("%-6ld %d is thinking\n", elapsed, philo->id);
-	else if (status == DIED)
-		printf("%-6ld %d is dead\n", elapsed, philo->id);
-	pthread_mutex_unlock(&philo->write_mutex);
+	time = get_current_time() - philo->start_time;
+	pthread_mutex_lock(philo->write_mutex);
+	if (!is_dead(philo))
+	{
+		if (status == EATING)
+			printf("%ld %d is eating", time, id);
+		else if (status == SLEEPING)
+			printf("%ld %d is sleeping", time, id);
+		else if (status == TAKE_LEFT_FORK || status == TAKE_LEFT_FORK)
+			printf("%ld %d has taken fork", time, id);
+		else if (status == THINKING)
+			printf("%ld %d is thinking", time, id);
+		else if (status == SLEEPING)
+			printf("%ld %d is sleeping", time, id);
+	}
+	else
+	{
+		if (status == DIED)
+			printf("%ld %d is died", time, id);
+	}
+	pthread_mutex_unlock(philo->write_mutex);
 }
 
 void	close_all(char *str, t_table *table)

@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 12:45:45 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/13 13:53:41 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/14 13:57:07 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_philo
 	long		number_of_meals;
 	long		start_time;
 	long		last_meal_time;
+	long		meal_flag;
 	long		*dead;
 	t_table		*table;
 	t_mutex		*first_fork;
@@ -84,6 +85,7 @@ void	*ft_malloc(size_t size);
 long	get_current_time(void);
 long	ft_usleep(size_t milliseconds);
 void	close_all(char *str, t_table *table);
+void	write_status(t_philo *philo, t_status status);
 
 // Controls
 int	check_arg_digits(char *argv);
@@ -97,14 +99,14 @@ void	philo_init(t_table *table);
 void	data_init(t_table *table, char **argv);
 
 // Dinner Simulation
-void	simulation(t_table *table);
+int		simulation(t_table *table);
 void	*dinner(void *data);
+int		is_dead(t_philo *philos);
 
 // Monitor
 void	*monitor(void *data);
-
-// Threads
-int	create(pthread_t th, void *(*foo)(void *), void *data);
-int	join(pthread_t th);
+int		philo_dead(t_philo *philo, long time_to_die);
+int		check_philo_dead(t_philo *philo);
+int		philos_full(t_philo *philo);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 22:33:15 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/13 13:54:10 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/14 13:57:57 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	main(int argc, char **argv)
 	if (check_args(argv) == 1)
 		return (1);
 	data_init(&table, argv);
-	simulation(&table);
+	if (simulation(&table) != 0)
+		return (ft_error("Dinner couldn't start"));
 	close_all(NULL, &table);
 	return (0);
 }
