@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 22:33:15 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/14 13:57:57 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/14 14:31:15 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_table	table;
 	
-	if (argc != 5 || argc != 6)
+	if (argc != 5 && argc != 6)
 		return (ft_error("Not enough argumnets"));
 	if (check_args(argv) == 1)
 		return (1);

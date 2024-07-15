@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 14:31:02 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/14 13:56:06 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/15 15:05:38 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	*dinner(void *data)
 	while (!is_dead(philo))
 	{
 		eat(philo);
-		sleep(philo);
+		sleeping(philo);
 		think(philo);
 	}
 	return (data);
@@ -42,7 +42,7 @@ void	*dinner(void *data)
 
 int	simulation(t_table *table)
 {
-	pthread_t	*waiter; // observer thread
+	pthread_t	waiter; // observer thread
 	int			i;
 
 	i = 0;

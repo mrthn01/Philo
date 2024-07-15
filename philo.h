@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 12:45:45 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/14 13:57:07 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/14 14:26:25 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	*ft_malloc(size_t size);
 long	get_current_time(void);
 long	ft_usleep(size_t milliseconds);
 void	close_all(char *str, t_table *table);
-void	write_status(t_philo *philo, t_status status);
+void	write_status(t_philo *philo, t_status status, long id);
 
 // Controls
 int	check_arg_digits(char *argv);
@@ -102,6 +102,11 @@ void	data_init(t_table *table, char **argv);
 int		simulation(t_table *table);
 void	*dinner(void *data);
 int		is_dead(t_philo *philos);
+
+// Routine
+void	think(t_philo *philo);
+void	sleeping(t_philo *philo);
+void	eat(t_philo *philo);
 
 // Monitor
 void	*monitor(void *data);

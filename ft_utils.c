@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 22:34:23 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/10 22:39:26 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/15 14:34:28 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ size_t	ft_strlen(const char *str)
 	return (len);
 }
 
-void	ft_error(const char *str)
+int	ft_error(char *str)
 {
 	write(2, str, ft_strlen(str));
 	write(2, "\n", 1);

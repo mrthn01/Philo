@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 23:33:38 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/11 14:30:09 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/14 14:28:02 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	assign_forks(t_philo *philo, t_fork *forks, int pos, long philo_nbr)
 {
-	philo->first_fork = &forks[(pos + 1) % philo_nbr];
-	philo->second_fork = &forks[pos];
+	philo->first_fork = &forks[(pos + 1) % philo_nbr].fork;
+	philo->second_fork = &forks[pos].fork;
 	if (philo->id % 2 == 0)
 	{
-		philo->first_fork = &forks[(pos + 1) % philo_nbr];
-		philo->second_fork = &forks[pos];
+		philo->first_fork = &forks[(pos + 1) % philo_nbr].fork;
+		philo->second_fork = &forks[pos].fork;
 	}
 }
 
@@ -78,7 +78,7 @@ void	philo_init(t_table *table)
 
 void	data_init(t_table *table, char **argv)
 {
-	arg_init(table, argv);
+	inputs(table, argv);
 	table_init(table);
 	philo_init(table);
 }

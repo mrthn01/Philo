@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 22:39:47 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/13 16:11:08 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/14 14:29:49 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_malloc(size_t size)
 
 	res = malloc(size);
 	if (!res)
-		return ;
+		return (NULL);
 	return (res);
 }
 
@@ -33,7 +33,7 @@ long	ft_usleep(size_t milliseconds)
 	return (0);
 }
 
-size_t	get_current_time(void)
+long	get_current_time(void)
 {
 	struct timeval	time;
 
@@ -51,20 +51,20 @@ void	write_status(t_philo *philo, t_status status, long id)
 	if (!is_dead(philo))
 	{
 		if (status == EATING)
-			printf("%ld %d is eating", time, id);
+			printf("%ld %ld is eating", time, id);
 		else if (status == SLEEPING)
-			printf("%ld %d is sleeping", time, id);
+			printf("%ld %ld is sleeping", time, id);
 		else if (status == TAKE_LEFT_FORK || status == TAKE_LEFT_FORK)
-			printf("%ld %d has taken fork", time, id);
+			printf("%ld %ld has taken fork", time, id);
 		else if (status == THINKING)
-			printf("%ld %d is thinking", time, id);
+			printf("%ld %ld is thinking", time, id);
 		else if (status == SLEEPING)
-			printf("%ld %d is sleeping", time, id);
+			printf("%ld %ld is sleeping", time, id);
 	}
 	else
 	{
 		if (status == DIED)
-			printf("%ld %d is died", time, id);
+			printf("%ld %ld is died", time, id);
 	}
 	pthread_mutex_unlock(philo->write_mutex);
 }
