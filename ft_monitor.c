@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 19:51:47 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/13 16:03:10 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/15 15:13:45 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,21 @@ int	check_philo_dead(t_philo *philo)
 int	philos_full(t_philo *philo)
 {
 	int	i;
+	int	ate;
 
 	i = 0;
-	if (philo->number_of_meals == -1 || philo->number_of_meals == 0)
+	ate = 0;
+	if (philo->number_of_meals == -1)
 		return (0);
 	while (i < philo[0].table->philo_num)
 	{
 		pthread_mutex_lock(philo[i].meal_mutex);
-		if (philo[i].meal_counter < philo[i].number_of_meals)
-			philo->meal_counter++;
+		if (philo[i].meal_counter >= philo[i].number_of_meals)
+			ate++;
 		pthread_mutex_unlock(philo[i].meal_mutex);
 		i++;		
 	}
-	if (philo->meal_counter == philo[0].number_of_meals)
+	if (ate == philo[0].number_of_meals)
 	{
 		pthread_mutex_lock(philo->dead_mutex);
 		*philo->dead = 1;

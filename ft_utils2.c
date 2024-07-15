@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 22:39:47 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/14 14:29:49 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/15 15:29:51 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_malloc(size_t size)
 
 	res = malloc(size);
 	if (!res)
-		return (NULL);
+		write(2, "malloc() error\n", 16);
 	return (res);
 }
 
