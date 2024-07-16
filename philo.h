@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 12:45:45 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/16 12:58:27 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/16 14:59:40 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_philo
 {
 	pthread_t	th;
 	long		id;
+	long		philo_num;
 	long		time_to_die;
 	long		time_to_eat;
 	long		time_to_sleep;

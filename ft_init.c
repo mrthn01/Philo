@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 23:33:38 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/16 14:53:00 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/16 15:00:22 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	philo_init(t_table *table)
 		table->philos[i].write_mutex = &table->write_mutex;
 		table->philos[i].meal_mutex = &table->meal_mutex;
 		table->philos[i].dead_mutex = &table->dead_mutex;
+		table->philos[i].philo_num = table->philo_num;
 		table->philos[i].dead = &table->dead_flag;
 		table->philos[i].table = table;
 		assign_forks(&table->philos[i], table->forks, i, table->philo_num);
