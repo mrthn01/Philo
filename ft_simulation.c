@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 14:31:02 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/15 15:05:38 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/16 14:46:21 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ int	simulation(t_table *table)
 			return (ft_error("Failed at creating thred"));
 		i++;
 	}
+	i = 0;
 	if (pthread_join(waiter, NULL) != 0)
 		return (ft_error("Failed at joining thread"));
-	i = 0;
 	while (i < table->philo_num)
 	{
-		if (pthread_join(table->philos[i].th, NULL))
+		if (pthread_join(table->philos[i].th, NULL) != 0)
 			return (ft_error("Failed at joining thread"));
 		i++;
 	}

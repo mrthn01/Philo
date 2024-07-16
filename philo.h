@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 12:45:45 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/14 14:26:25 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/16 12:58:27 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,6 @@ typedef struct s_table
 	t_philo	*philos;
 }			t_table;
 
-typedef enum	s_status
-{
-	TAKE_RIGHT_FORK,
-	TAKE_LEFT_FORK,
-	EATING,
-	SLEEPING,
-	THINKING,
-	DIED,
-}			t_status;
-
 // Utils
 size_t	ft_strlen(const char *str);
 int		ft_error(char *str);
@@ -85,7 +75,7 @@ void	*ft_malloc(size_t size);
 long	get_current_time(void);
 long	ft_usleep(size_t milliseconds);
 void	close_all(char *str, t_table *table);
-void	write_status(t_philo *philo, t_status status, long id);
+void	write_status(t_philo *philo, long id, char *str);
 
 // Controls
 int	check_arg_digits(char *argv);

@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 23:33:38 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/15 15:46:50 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/16 14:53:00 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,11 @@ void	philo_init(t_table *table)
 	{
 		table->philos[i].id = i + 1;
 		table->philos[i].meal_counter = 0;
+		table->philos[i].meal_flag = 0;
 		table->philos[i].time_to_die = table->time_to_die;
 		table->philos[i].time_to_eat = table->time_to_eat;
 		table->philos[i].time_to_sleep = table->time_to_sleep;
+		table->philos[i].number_of_meals = table->number_of_meals;
 		table->philos[i].start_time = get_current_time();
 		table->philos[i].last_meal_time = get_current_time();
 		table->philos[i].write_mutex = &table->write_mutex;

@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 19:51:47 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/15 15:13:45 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/16 14:51:33 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,10 @@ int	check_philo_dead(t_philo *philo)
 	{
 		if (philo_dead(&philo[i], philo[0].time_to_die) == 1)
 		{
+			write_status(philo, philo->id, "is dead");
 			pthread_mutex_lock(philo->dead_mutex);
 			*philo->dead = 1;
-			pthread_mutex_lock(philo->dead_mutex);
+			pthread_mutex_unlock(philo->dead_mutex);
 			return (1);
 		}
 		i++;
@@ -51,7 +52,7 @@ int	philos_full(t_philo *philo)
 
 	i = 0;
 	ate = 0;
-	if (philo->number_of_meals == -1)
+	if (philo[0].number_of_meals == -1)
 		return (0);
 	while (i < philo[0].table->philo_num)
 	{
@@ -61,11 +62,11 @@ int	philos_full(t_philo *philo)
 		pthread_mutex_unlock(philo[i].meal_mutex);
 		i++;		
 	}
-	if (ate == philo[0].number_of_meals)
+	if (ate == philo->number_of_meals)
 	{
 		pthread_mutex_lock(philo->dead_mutex);
 		*philo->dead = 1;
-		pthread_mutex_lock(philo->dead_mutex);
+		pthread_mutex_unlock(philo->dead_mutex);
 		return (1);
 	}
 	return (0);
