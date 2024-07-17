@@ -6,7 +6,7 @@
 /*   By: murathanelcuman <murathanelcuman@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 19:51:47 by murathanelc       #+#    #+#             */
-/*   Updated: 2024/07/16 15:00:44 by murathanelc      ###   ########.fr       */
+/*   Updated: 2024/07/17 13:38:11 by murathanelc      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	philos_full(t_philo *philo)
 		pthread_mutex_unlock(philo[i].meal_mutex);
 		i++;		
 	}
-	if (ate == philo->number_of_meals)
+	if (ate == philo[0].philo_num)
 	{
 		pthread_mutex_lock(philo->dead_mutex);
 		*philo->dead = 1;
